@@ -1,0 +1,414 @@
+{% extends 'basic.html' %}
+{% block title %} | Create Listing {% endblock %}
+
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+    <div class="container">
+        <div class="row text-center">
+            <div class="col-md-12">
+                <h1 class="display-4 font-weight-bold mb-3">Create New Listing</h1>
+                <p class="lead mb-0">Showcase your property in the best possible way</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="bc" class="mt-3">
+    <div class="container">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb bg-white shadow-sm rounded">
+                <li class="breadcrumb-item">
+                    <a href="{% url 'index' %}" class="text-decoration-none text-primary">
+                        <i class="fas fa-home"></i> Home</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="{% url 'listings' %}" class="text-decoration-none text-primary">Browse Listings</a>
+                </li>
+                <li class="breadcrumb-item active">Create Listing</li>
+            </ol>
+        </nav>
+    </div>
+</section>
+
+<section id="create-listing" class="py-5">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10">
+                <div class="card shadow-lg border-0 overflow-hidden">
+                    <div class="card-header bg-white py-4 border-0">
+                        <div class="d-flex align-items-center justify-content-center">
+                            <div class="icon-circle bg-primary text-white mr-3">
+                                <i class="fas fa-home fa-lg"></i>
+                            </div>
+                            <h4 class="mb-0 text-dark font-weight-bold">Property Listing Details</h4>
+                        </div>
+                    </div>
+                    <div class="card-body px-5 py-4">
+                        {% include 'partials/alerts.html' %}
+                        <form method="POST" enctype="multipart/form-data" class="needs-validation" novalidate>
+                            {% csrf_token %}
+                            
+                            <!-- Basic Information Section -->
+                            <div class="form-section mb-5 p-4 bg-light rounded-lg">
+                                <div class="section-header d-flex align-items-center mb-4 pb-3 border-bottom">
+                                    <div class="icon-circle-sm bg-primary text-white mr-3">
+                                        <i class="fas fa-info"></i>
+                                    </div>
+                                    <h5 class="mb-0 font-weight-bold text-dark">Basic Information</h5>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="title" class="font-weight-bold text-dark">Property Title</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-heading text-primary"></i></span>
+                                                </div>
+                                                {{ form.title }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-12 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="address" class="font-weight-bold text-dark">Full Address</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-map-marker-alt text-primary"></i></span>
+                                                </div>
+                                                {{ form.address }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="city" class="font-weight-bold text-dark">City</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-city text-primary"></i></span>
+                                                </div>
+                                                {{ form.city }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="state" class="font-weight-bold text-dark">State</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-flag text-primary"></i></span>
+                                                </div>
+                                                {{ form.state }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="zipcode" class="font-weight-bold text-dark">ZIP Code</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-mail-bulk text-primary"></i></span>
+                                                </div>
+                                                {{ form.zipcode }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-12">
+                                        <div class="form-group mb-0">
+                                            <label for="description" class="font-weight-bold text-dark">Description</label>
+                                            {{ form.description }}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Property Details Section -->
+                            <div class="form-section mb-5 p-4 bg-light rounded-lg">
+                                <div class="section-header d-flex align-items-center mb-4 pb-3 border-bottom">
+                                    <div class="icon-circle-sm bg-primary text-white mr-3">
+                                        <i class="fas fa-tags"></i>
+                                    </div>
+                                    <h5 class="mb-0 font-weight-bold text-dark">Property Details</h5>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="price" class="font-weight-bold text-dark">Price</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white">$</span>
+                                                </div>
+                                                {{ form.price }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="bedrooms" class="font-weight-bold text-dark">Bedrooms</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-bed text-primary"></i></span>
+                                                </div>
+                                                {{ form.bedrooms }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="bathrooms" class="font-weight-bold text-dark">Bathrooms</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-bath text-primary"></i></span>
+                                                </div>
+                                                {{ form.bathrooms }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="sqft" class="font-weight-bold text-dark">Square Feet</label>
+                                            <div class="input-group">
+                                                {{ form.sqft }}
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text bg-white">sqft</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="lot_size" class="font-weight-bold text-dark">Lot Size</label>
+                                            <div class="input-group">
+                                                {{ form.lot_size }}
+                                                <div class="input-group-append">
+                                                    <span class="input-group-text bg-white">acres</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4 mb-4">
+                                        <div class="form-group mb-0">
+                                            <label for="garage" class="font-weight-bold text-dark">Garage</label>
+                                            <div class="input-group">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text bg-white"><i class="fas fa-car text-primary"></i></span>
+                                                </div>
+                                                {{ form.garage }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <!-- Photo Gallery Section -->
+                            <div class="form-section mb-4 p-4 bg-light rounded-lg">
+                                <div class="section-header d-flex align-items-center mb-4 pb-3 border-bottom">
+                                    <div class="icon-circle-sm bg-primary text-white mr-3">
+                                        <i class="fas fa-camera"></i>
+                                    </div>
+                                    <h5 class="mb-0 font-weight-bold text-dark">Property Photos</h5>
+                                </div>
+                                
+                                <div class="alert alert-primary d-flex align-items-center">
+                                    <i class="fas fa-info-circle fa-lg mr-3"></i>
+                                    <div>Upload high-quality photos to showcase your property. The first image will be featured as the main photo.</div>
+                                </div>
+                                
+                                <div class="form-row">
+                                    {% for photo_field in form %}
+                                        {% if 'photo_' in photo_field.name or 'photo_main' in photo_field.name %}
+                                        <div class="col-md-6 mb-4">
+                                            <div class="form-group mb-0">
+                                                <label for="{{ photo_field.id_for_label }}" class="font-weight-bold text-dark">
+                                                    {% if photo_field.name == 'photo_main' %}
+                                                        Main Photo
+                                                    {% else %}
+                                                        Photo {{ forloop.counter }}
+                                                    {% endif %}
+                                                </label>
+                                                <div class="custom-file">
+                                                    {{ photo_field }}
+                                                    <label class="custom-file-label" for="{{ photo_field.id_for_label }}">Choose file...</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        {% endif %}
+                                    {% endfor %}
+                                </div>
+                            </div>
+                            
+                            <div class="form-group mt-5 text-center">
+                                <button type="submit" class="btn btn-primary btn-pill px-5 py-3 font-weight-bold">
+                                    <i class="fas fa-paper-plane mr-2"></i>Publish Listing
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<style>
+    :root {
+        --primary-color: #667eea;
+        --secondary-color: #764ba2;
+        --light-gray: #f8f9fa;
+        --dark-gray: #343a40;
+    }
+    
+    body {
+        background-color: #f5f7fa;
+    }
+    
+    .icon-circle {
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .icon-circle-sm {
+        width: 36px;
+        height: 36px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .form-section {
+        background: white;
+        border-radius: 0.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .section-header {
+        position: relative;
+    }
+    
+    .form-control, .custom-select {
+        border-radius: 0.375rem;
+        padding: 0.75rem 1rem;
+        border: 1px solid #e9ecef;
+        transition: all 0.3s ease;
+        height: calc(1.5em + 1.5rem);
+    }
+    
+    .form-control:focus, .custom-select:focus {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .input-group-text {
+        background-color: white;
+        border-right: none;
+    }
+    
+    .input-group .form-control {
+        border-left: none;
+    }
+    
+    .custom-file-label {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        padding: 0.75rem 1rem;
+        border-radius: 0.375rem;
+        background-color: white;
+    }
+    
+    .custom-file-input:focus ~ .custom-file-label {
+        border-color: var(--primary-color);
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .btn-primary {
+        background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+        border: none;
+        padding: 0.75rem 2.5rem;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+        transition: all 0.3s ease;
+        background-size: 200% auto;
+        box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+    }
+    
+    .btn-pill {
+        border-radius: 50rem;
+    }
+    
+    .btn-primary:hover {
+        background-position: right center;
+        transform: translateY(-2px);
+        box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .breadcrumb {
+        border-radius: 0.375rem;
+        padding: 0.75rem 1rem;
+        box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .card {
+        border-radius: 0.75rem;
+        border: none;
+    }
+    
+    textarea.form-control {
+        min-height: 120px;
+    }
+    
+    @media (max-width: 768px) {
+        .display-4 {
+            font-size: 2.25rem;
+        }
+        
+        .card-body {
+            padding: 1.5rem;
+        }
+        
+        .form-section {
+            padding: 1.5rem;
+        }
+    }
+</style>
+
+<script>
+    // Initialize custom file input
+    $(document).ready(function () {
+        bsCustomFileInput.init();
+        
+        // Add validation feedback
+        $('form').on('submit', function(e) {
+            if (!this.checkValidity()) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            $(this).addClass('was-validated');
+        });
+        
+        // Add animation to form sections
+        $('.form-section').each(function(i) {
+            $(this).delay(i*200).fadeIn();
+        });
+    });
+</script>
+{% endblock %}
