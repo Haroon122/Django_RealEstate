@@ -42,7 +42,13 @@
           {% if mvp_realtors %}
           {% for realtor in mvp_realtors %}
            <div class="card">
+            {% if realtor.photo %}
             <img class="card-img-top" src="{{ realtor.photo.url }}" width="100px" height="350px" alt="Seller of the month">
+            {% else %}
+            <div class="card-img-top bg-secondary text-white d-flex align-items-center justify-content-center" style="height: 350px;">
+              <i class="fas fa-user fa-5x"></i>
+            </div>
+            {% endif %}
             <div class="card-body">
               <h5 class="card-title">Seller Of The Month</h5>
               <h6 class="text-secondary">{{ realtor.name }}</h6>
@@ -75,7 +81,13 @@
         {% if realtors %}
         {% for realtor in realtors %}
          <div class="col-md-4">
-          <img src="{{ realtor.photo.url }}" width=80px" height="350px" alt="" class="rounded-circle mb-3">
+          {% if realtor.photo %}
+          <img src="{{ realtor.photo.url }}" width="80px" height="350px" alt="" class="rounded-circle mb-3">
+          {% else %}
+          <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center mb-3" style="width: 80px; height: 80px; margin: 0 auto;">
+            <i class="fas fa-user"></i>
+          </div>
+          {% endif %}
           <h4>{{ realtor.name }}</h4>
           <p class="text-success">
             <i class="fas fa-award text-success mb-3"></i> Realtor</p>
